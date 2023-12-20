@@ -21,7 +21,7 @@ export const riceCooker = {
     if (this.ricePresent && !this.riceCooked) {
       console.log('Cooking rice...');
       this.delaySync(1500);
-      this.riceCooked = true;git 
+      this.riceCooked = true;
       console.log('The rice has been cooked!');
     } else if (!this.ricePresent) {
       console.log('Cannot cook. The rice cooker is empty.');
@@ -84,28 +84,33 @@ export function simulateRiceCooker() {
   while (condition) {
     displayMenu();
     input = prompt('Enter your choice: ');
-    const choice = parseInt(input);
-      switch (choice) {
-        case 1:
+
+    if (input) {
+      const choice = parseInt(input);
+
+      if (!isNaN(choice)) {
+        if (choice === 1) {
           riceCooker.addRice();
-          break;
-        case 2:
+        } else if (choice === 2) {
           riceCooker.cookRice();
-          break;
-        case 3:
+        } else if (choice === 3) {
           riceCooker.steam();
-        case 4:
+        } else if (choice === 4) {
           riceCooker.keepWarm();
-          break;
-        case 5:
+        } else if (choice === 5) {
           riceCooker.removeRice();
-          break;
-        case 6:
+        } else if (choice === 6) {
           console.log('Thank you for using the Rice Cooker Simulator. Goodbye!');
-          condition = false;
           break;
-        default : console.log('Invalid choice. Please select a valid option.');
+        } else {
+          console.log('Invalid choice. Please select a valid option.');
+        }
+      } else {
+        console.log('Invalid input. Please enter a valid number.');
       }
+    } else {
+      console.log('No input provided.');
+    }
   }
 }
 
